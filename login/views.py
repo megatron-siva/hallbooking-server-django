@@ -393,7 +393,7 @@ def cancel(request):
         return JsonResponse({'text':'successfully cancelled'})
     return JsonResponse({'text':'cancellation unsuccessful'})
 def register(request):
-    return HttpResponse('hi')
+    return HttpResponse('HELLO MEGATRON.')
 
 
 def mail(send_to_email, subject, message):
