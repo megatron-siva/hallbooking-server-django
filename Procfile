@@ -1,1 +1,1 @@
-web: gunicorn booking.wsgi
+web: gunicorn booking.wsgi --log-file -
