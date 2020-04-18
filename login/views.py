@@ -95,6 +95,7 @@ def book_hall(request):
 
 @csrf_exempt
 def requests(request):
+    print(json.loads(request.body))
     category = json.loads(request.body)['category']
     if category == 'hod' or category=='dean':
         ob = Hod_Dean.objects.filter(userid=json.loads(request.body)['mailid'])
