@@ -58,15 +58,13 @@ def book_hall(request):
             pass
         else:
             return JsonResponse({'text': 'Already booked in this time'})
+    print(json.loads(request.body))
     category = json.loads(request.body)['category']
-    print("megatron")
-    print(category)
     if category == 'staff':
         t_stage = '1234'
         c_stage = '1'
         ob = Staff.objects.filter(userid=json.loads(request.body)['mailid'])
         post = 'staff'
-        print('hi',ob)
     elif category == 'hod':
         t_stage = '1234'
         c_stage = '12'
