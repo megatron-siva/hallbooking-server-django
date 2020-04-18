@@ -121,6 +121,7 @@ def requests(request):
 
     elif category == 'hall_incharge':
         res = Request.objects.filter(current_stage='12', hall_incharge_id=json.loads(request.body)['mailid'])
+        print(res)
         j = {'user_name': [], 'user_dept': [], 'user_clg': [], 'hall_name': [], 'function_nature': [], 'date': [],
              'start_time': [], 'end_time': [], 'additional_requirements': [], 'user_mobile': [], 'request_id': [],
              'user_designation': []}
@@ -137,6 +138,7 @@ def requests(request):
             j['user_mobile'].append(i.user_mobile)
             j['request_id'].append(str(i.request_id))
             j['user_designation'].append(i.user_designation)
+            print(j)
         return JsonResponse(j)
     elif category == 'principal':
         ob = Principal.objects.filter(userid=json.loads(request.body)['mailid'])
