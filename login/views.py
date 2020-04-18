@@ -9,6 +9,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import json
+from django.db.models import Q
 
 
 # Create your views here.
@@ -189,9 +190,9 @@ def decision(request):
                         pass
                     else:
                         return JsonResponse({'text': 'Already booked in this time'})
-                for i in Request.objects.filter(
+                for i in Request.objects.filter(Q(current_stage='123') | Q(current_stage='12c'),
                         date=ob[0].date,
-                        hall_id=ob[0].hall_id).exclude(current_stage='12'):
+                        hall_id=ob[0].hall_id,current_stage='123'):
                     if s_time < i.start_time and e_time < i.start_time:
                         pass
                     elif s_time > i.end_time and e_time > i.end_time:
