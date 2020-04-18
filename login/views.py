@@ -64,6 +64,7 @@ def book_hall(request):
         c_stage = '1'
         ob = Staff.objects.filter(userid=json.loads(request.body)['mailid'])
         post = 'staff'
+        print('hi',ob)
     elif category == 'hod':
         t_stage = '1234'
         c_stage = '12'
