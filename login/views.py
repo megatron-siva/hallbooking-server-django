@@ -58,7 +58,6 @@ def book_hall(request):
             pass
         else:
             return JsonResponse({'text': 'Already booked in this time'})
-    print(json.loads(request.body))
     category = json.loads(request.body)['category']
     if category == 'staff':
         t_stage = '1234'
