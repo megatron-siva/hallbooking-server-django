@@ -19,6 +19,7 @@ def login_check(request):
     if len(a) == 0:
         return JsonResponse({'category': 'Null'})
     elif len(a) == 1:
+        print(str(a[0].category))
         return JsonResponse({'category': str(a[0].category)})
     else:
         return JsonResponse({'category': 'multivalue_found'})
