@@ -121,12 +121,9 @@ def requests(request):
 
     elif category == 'hall_incharge':
         res = Request.objects.filter(current_stage='12', hall_incharge_id=json.loads(request.body)['mailid'])
-        print(json.loads(request.body)['mailid'])
-        print(Request.objects.filter(current_stage='12'))
-        print(Request.objects.filter(hall_incharge_id=json.loads(request.body)['mailid']))
         j = {'user_name': [], 'user_dept': [], 'user_clg': [], 'hall_name': [], 'function_nature': [], 'date': [],
              'start_time': [], 'end_time': [], 'additional_requirements': [], 'user_mobile': [], 'request_id': [],
-             'user_designation': []}
+             'user_designation': [],'request_id':[]}
         for i in res:
             j['user_name'].append(i.user_name)
             j['user_dept'].append(i.user_dept)
@@ -140,7 +137,6 @@ def requests(request):
             j['user_mobile'].append(i.user_mobile)
             j['request_id'].append(str(i.request_id))
             j['user_designation'].append(i.user_designation)
-            print(j)
         return JsonResponse(j)
     elif category == 'principal':
         ob = Principal.objects.filter(userid=json.loads(request.body)['mailid'])
@@ -195,7 +191,7 @@ def decision(request):
                         return JsonResponse({'text': 'Already booked in this time'})
                 for i in Request.objects.filter(
                         date=ob[0].date,
-                        hall_id=ob[0].hall_id):
+                        hall_id=ob[0].hall_id).exclude(current_stage='12'):
                     if s_time < i.start_time and e_time < i.start_time:
                         pass
                     elif s_time > i.end_time and e_time > i.end_time:
