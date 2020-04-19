@@ -190,7 +190,7 @@ def decision(request):
                         pass
                     else:
                         return JsonResponse({'text': 'Already booked in this time'})
-                for i in Request.objects.filter(Q(current_stage='123') | Q(current_stage='12c'),
+                for i in Request.objects.filter(Q(current_stage='123') | Q(current_stage='1234'),
                         date=ob[0].date,
                         hall_id=ob[0].hall_id,current_stage='123'):
                     if s_time < i.start_time and e_time < i.start_time:
