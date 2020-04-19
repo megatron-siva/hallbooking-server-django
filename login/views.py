@@ -117,7 +117,7 @@ def requests(request):
             j['request_id'].append(str(i.request_id))
             j['user_designation'].append(i.user_designation)
 
-        return JsonResponse(j)
+
 
     elif category == 'hall_incharge':
         res = Request.objects.filter(current_stage='12', hall_incharge_id=json.loads(request.body)['mailid'])
@@ -137,7 +137,7 @@ def requests(request):
             j['user_mobile'].append(i.user_mobile)
             j['request_id'].append(str(i.request_id))
             j['user_designation'].append(i.user_designation)
-        return JsonResponse(j)
+
     elif category == 'principal':
         ob = Principal.objects.filter(userid=json.loads(request.body)['mailid'])
         res = Request.objects.filter(user_clg=ob[0].college, current_stage='123')
@@ -157,7 +157,8 @@ def requests(request):
             j['user_mobile'].append(i.user_mobile)
             j['request_id'].append(str(i.request_id))
             j['user_designation'].append(i.user_designation)
-        return JsonResponse(j)
+    print(j)
+    return JsonResponse(j)
 @csrf_exempt
 def decision(request):
     print(json.loads(request.body))
@@ -279,6 +280,7 @@ def mybookings(request):
         j['booked']['user_mobile'].append(i.user_mobile)
         j['booked']['booking_id'].append(str(i.booking_id))
         j['booked']['user_designation'].append(i.user_designation)
+    print(j)
     return JsonResponse(j)
 
 @csrf_exempt
