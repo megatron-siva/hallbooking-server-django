@@ -15,12 +15,12 @@ from django.db.models import Q
 # Create your views here.
 @csrf_exempt
 def login_check(request):
+    print(json.loads(request.body))
     username = json.loads(request.body)['mailid']
     a = Login.objects.filter(userid=username)
     if len(a) == 0:
         return JsonResponse({'category': 'Null'})
     elif len(a) == 1:
-        print(str(a[0].category))
         return JsonResponse({'category': str(a[0].category)})
     else:
         return JsonResponse({'category': 'multivalue_found'})
@@ -28,6 +28,7 @@ def login_check(request):
 
 @csrf_exempt
 def on_change_date(request):
+    print(json.loads(request.body))
     d = {}
     for j in Hall.objects.all():
         d[str(j.hall_id)]=[]
@@ -39,8 +40,6 @@ def on_change_date(request):
         else:
             d[str(i.hall_id)][1] +='\n'+str(i.start_time) + ' - ' + str(i.end_time)
             d[str(i.hall_id)][0] = str(int(d[str(i.hall_id)][0]) + 1)
-    print(int(json.loads(request.body)['year']), int(json.loads(request.body)['month']),
-                      int(json.loads(request.body)['day']))
     return JsonResponse(d)
 
 
@@ -161,6 +160,7 @@ def requests(request):
         return JsonResponse(j)
 @csrf_exempt
 def decision(request):
+    print(json.loads(request.body))
     request_id=int(json.loads(request.body)['request_id'])
     category=json.loads(request.body)['category']
     decision=json.loads(request.body)['decision']
@@ -241,6 +241,7 @@ def decision(request):
 
 @csrf_exempt
 def mybookings(request):
+    print(json.loads(request.body))
     category=json.loads(request.body)['category']
     mailid=json.loads(request.body)['mailid']
     j = {'request':{'user_name': [], 'user_dept': [], 'user_clg': [], 'hall_name': [], 'function_nature': [], 'date': [],
@@ -282,6 +283,7 @@ def mybookings(request):
 
 @csrf_exempt
 def myapprovals(request):
+    print(json.loads(request.body))
     j = {'request': {'user_name': [], 'user_dept': [], 'user_clg': [], 'hall_name': [], 'function_nature': [],
                      'date': [],
                      'start_time': [], 'end_time': [], 'additional_requirements': [], 'user_mobile': [],
@@ -379,11 +381,12 @@ def myapprovals(request):
             j['booked']['user_mobile'].append(i.user_mobile)
             j['booked']['booking_id'].append(str(i.booking_id))
             j['booked']['user_designation'].append(i.user_designation)
-
+    print(j)
     return JsonResponse(j)
 
 @csrf_exempt
 def cancel(request):
+    print(json.loads(request.body))
     c_category=json.loads(request.body)['cancel_category']
     if c_category=='request':
         id=json.loads(request.body)['id']
