@@ -59,6 +59,16 @@ def book_hall(request):
             pass
         else:
             return JsonResponse({'text': 'Already booked in this time'})
+    for i in Request.objects.filter(
+            date=date(int(json.loads(request.body)['year']), int(json.loads(request.body)['month']),
+                      int(json.loads(request.body)['day'])),
+            hall_id=str(json.loads(request.body)['hall_id']),userid=str(json.loads(request.body)['mailid'])):
+        if s_time < i.start_time and e_time < i.start_time:
+            pass
+        elif s_time > i.end_time and e_time > i.end_time:
+            pass
+        else:
+            return JsonResponse({'text': 'you have already booked in this time'})
     category = json.loads(request.body)['category']
     if category == 'staff':
         t_stage = '1234'
