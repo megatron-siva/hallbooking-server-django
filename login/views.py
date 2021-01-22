@@ -342,6 +342,8 @@ def myapprovals(request):
             j['request']['user_mobile'].append(i.user_mobile)
             j['request']['request_id'].append(str(i.request_id))
             j['request']['user_designation'].append(i.user_designation)
+            j['request']['current_stage'].append(i.current_stage)
+            j['request']['total_stage'].append(i.total_stage)
         for i in Booked.objects.filter(hall_incharge_id=mailid).order_by('-date'):
             j['booked']['user_name'].append(i.user_name)
             j['booked']['user_dept'].append(i.user_dept)
@@ -370,6 +372,8 @@ def myapprovals(request):
             j['request']['user_mobile'].append(i.user_mobile)
             j['request']['request_id'].append(str(i.request_id))
             j['request']['user_designation'].append(i.user_designation)
+            j['request']['current_stage'].append(i.current_stage)
+            j['request']['total_stage'].append(i.total_stage)
         for i in Booked.objects.filter(user_clg=u_deatils[0].college).order_by('-date'):
             j['booked']['user_name'].append(i.user_name)
             j['booked']['user_dept'].append(i.user_dept)
@@ -383,6 +387,8 @@ def myapprovals(request):
             j['booked']['user_mobile'].append(i.user_mobile)
             j['booked']['booking_id'].append(str(i.booking_id))
             j['booked']['user_designation'].append(i.user_designation)
+            j['request']['current_stage'].append(i.current_stage)
+            j['request']['total_stage'].append(i.total_stage)
     print(j)
     return JsonResponse(j)
 
