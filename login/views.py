@@ -442,4 +442,4 @@ def mail(send_to_email, subject, message):
 
 @csrf_exempt
 def mobile_auth(request):
-    return render(request,"static/mobile_auth.html")
+    return render(request,"mobile_auth.html")
