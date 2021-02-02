@@ -439,3 +439,7 @@ def mail(send_to_email, subject, message):
     server.sendmail(email, send_to_email, text)
     server.quit()
 
+
+@csrf_exempt
+def mobile_auth(request):
+    return render(request,"static/mobile_auth.html")
