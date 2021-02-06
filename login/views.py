@@ -101,7 +101,7 @@ def book_hall(request):
                   additional_requirements=requirement,
                   hall_incharge_id=h_id[0].hall_incharge_id, hall_name=h_id[0].hall_name)
     new.save()
-    return JsonResponse({'text': 'request placed successfully'})
+    return JsonResponse({'text': 'Request placed successfully'})
 
 @csrf_exempt
 def requests(request):
