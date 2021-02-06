@@ -68,7 +68,7 @@ def book_hall(request):
         elif s_time > i.end_time and e_time > i.end_time:
             pass
         else:
-            return JsonResponse({'text': 'you have already booked in this time'})
+            return JsonResponse({'text': 'You have already booked in this time'})
     category = json.loads(request.body)['category']
     if category == 'staff':
         t_stage = '1234'
