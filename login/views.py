@@ -45,6 +45,7 @@ def on_change_date(request):
 
 @csrf_exempt
 def book_hall(request):
+    print(json.loads(request.body))
     s_time = time(int(json.loads(request.body)['s_hour']), int(json.loads(request.body)['s_minute']),
                   )
     e_time = time(int(json.loads(request.body)['e_hour']), int(json.loads(request.body)['e_minute']),
