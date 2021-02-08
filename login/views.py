@@ -398,8 +398,6 @@ def myapprovals(request):
             j['booked']['user_mobile'].append(i.user_mobile)
             j['booked']['booking_id'].append(str(i.booking_id))
             j['booked']['user_designation'].append(i.user_designation)
-            j['request']['current_stage'].append(i.current_stage)
-            j['request']['total_stage'].append(i.total_stage)
     print(j)
     return JsonResponse(j)
 
