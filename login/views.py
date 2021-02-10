@@ -340,7 +340,7 @@ def myapprovals(request):
             j['booked']['booking_id'].append(str(i.booking_id))
             j['booked']['user_designation'].append(i.user_designation)
     elif category=='hall_incharge':
-        for i in Request.objects.filter(hall_incharge_id=mailid,current_stage='123'or'12c').order_by('-date'):
+        for i in Request.objects.filter(Q(current_stage='123') | Q(current_stage='12c'),Q(hall_incharge_id=mailid)).order_by('-date'):
             j['request']['user_name'].append(i.user_name)
             j['request']['user_dept'].append(i.user_dept)
             j['request']['user_clg'].append(i.user_clg)
