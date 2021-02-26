@@ -58,7 +58,7 @@ class Request(models.Model):
     function_nature=models.TextField()
     additional_requirements=models.TextField()
     hall_incharge_id = models.EmailField()
-    generator_incharge_id = models.EmailField()
+    generator_incharge_id = models.EmailField(null=True)
     hall_name = models.CharField(max_length=50)
     chief_guest_name=models.CharField(max_length=50,default='unknown')
     chief_guest_detail = models.TextField(default='unknown')
