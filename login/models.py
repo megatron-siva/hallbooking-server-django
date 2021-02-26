@@ -119,7 +119,7 @@ class Generator_Incharge(models.Model):
     hall_id = models.CharField(max_length=50, primary_key=True)
     hall_name = models.CharField(max_length=50)
     college = models.CharField(max_length=50)
-    generator_incharge_id = models.EmailField(default=None)
+    generator_incharge_id = models.EmailField(null=True)
     generator_incharge_name = models.CharField(max_length=50)
     def __str__(self):
         return self.generator_incharge_id+' - '+self.generator_incharge_name+' - '+self.hall_id
