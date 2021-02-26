@@ -8,7 +8,7 @@ class Login(models.Model):
         return self.userid+' - '+self.category
 
 class Hall(models.Model):
-    hall_incharge_id = models.CharField(max_length=50)
+    hall_incharge_id = models.EmailField()
     hall_incharge_name=models.CharField(max_length=50)
     hall_id=models.CharField(max_length=50,primary_key=True)
     hall_name = models.CharField(max_length=50)
@@ -57,8 +57,24 @@ class Request(models.Model):
     end_time=models.TimeField(auto_now=False, auto_now_add=False)
     function_nature=models.TextField()
     additional_requirements=models.TextField()
-    hall_incharge_id = models.CharField(max_length=50)
+    hall_incharge_id = models.EmailField()
+    generator_incharge_id = models.EmailField()
     hall_name = models.CharField(max_length=50)
+    chief_guest_name=models.CharField(max_length=50,default='unknown')
+    chief_guest_detail = models.TextField(default='unknown')
+    generator_needed=models.BooleanField(default=False)
+    generator_text=models.TextField(default='nothing')
+    generator_stage=models.CharField(max_length=50,default='0')
+    hod_notes = models.TextField(default='no notes')
+    hod_reason = models.TextField(default='no reason')
+    dean_notes = models.TextField(default='no notes')
+    dean_reason = models.TextField(default='no reason')
+    hall_incharge_notes = models.TextField(default='no notes')
+    hall_incharge_reason = models.TextField(default='no reason')
+    principal_notes = models.TextField(default='no notes')
+    principal_reason = models.TextField(default='no reason')
+    generator_incharge_notes = models.TextField(default='no notes')
+    generator_incharge_reason = models.TextField(default='no reason')
     def __str__(self):
         return str(self.request_id)+' - '+self.userid+' - '+self.hall_id
 
@@ -78,8 +94,33 @@ class Booked(models.Model):
     end_time=models.TimeField(auto_now=False, auto_now_add=False)
     function_nature=models.TextField()
     additional_requirements=models.TextField()
-    hall_incharge_id = models.CharField(max_length=50)
+    hall_incharge_id = models.EmailField()
+    generator_incharge_id=models.EmailField()
     hall_name = models.CharField(max_length=50)
+    chief_guest_name = models.CharField(max_length=50,default='unknown')
+    chief_guest_detail = models.TextField(default='unknown')
+    generator_needed = models.BooleanField(default=False)
+    generator_text = models.TextField(default='nothing')
+    generator_stage = models.CharField(max_length=50,default='0')
+    hod_notes = models.TextField(default='no notes')
+    hod_reason = models.TextField(default='no reason')
+    dean_notes = models.TextField(default='no notes')
+    dean_reason = models.TextField(default='no reason')
+    hall_incharge_notes = models.TextField(default='no notes')
+    hall_incharge_reason = models.TextField(default='no reason')
+    principal_notes = models.TextField(default='no notes')
+    principal_reason = models.TextField(default='no reason')
+    generator_incharge_notes = models.TextField(default='no notes')
+    generator_incharge_reason = models.TextField(default='no reason')
     def __str__(self):
         return str(self.booking_id)+' - '+self.userid+' - '+self.hall_id
+
+class Generator_Incharge(models.Model):
+    hall_id = models.CharField(max_length=50, primary_key=True)
+    hall_name = models.CharField(max_length=50)
+    college = models.CharField(max_length=50)
+    generator_incharge_id = models.EmailField()
+    generator_incharge_name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.generator_incharge_id+' - '+self.generator_incharge_name+' - '+self.hall_id
 
