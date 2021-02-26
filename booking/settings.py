@@ -88,7 +88,7 @@ DATABASES = {
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
-DATABASES['default']['NAME'] = 'POSTGRES'
+DATABASES['default']['NAME'] = 'd8009i6bcj8eo6'
 
 
 AUTH_PASSWORD_VALIDATORS = [
