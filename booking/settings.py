@@ -73,8 +73,7 @@ WSGI_APPLICATION = 'booking.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+# https://docs.djangoproject.com/en/3.0/ref/settings/#
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -88,9 +87,8 @@ DATABASES = {
 
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
