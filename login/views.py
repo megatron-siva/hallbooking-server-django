@@ -341,6 +341,8 @@ def decision(request):
         z = ob[0]
         if ob[0].current_stage=='1':
             if decision=='yes':
+                if decision_note==None or decision_note=='':
+                    decision_note='no notes'
                 z.current_stage+='2'
                 if category=='hod':
                     z.hod_notes=decision_note
@@ -349,6 +351,8 @@ def decision(request):
                 z.save()
                 return JsonResponse({'text':'successfully accepted'})
             elif decision=='no':
+                if decision_note==None or decision_note=='':
+                    decision_note='no reason'
                 z.current_stage+='c'
                 if category=='hod':
                     z.hod_reason=decision_note
@@ -364,6 +368,8 @@ def decision(request):
         z = ob[0]
         if ob[0].current_stage=='12':
             if decision=='yes':
+                if decision_note==None or decision_note=='':
+                    decision_note='no notes'
                 s_time = ob[0].start_time
                 e_time = ob[0].end_time
                 for i in Booked.objects.filter(
@@ -418,6 +424,8 @@ def decision(request):
                 z.delete()
                 return JsonResponse({'text':'successfully accepted'})
             elif decision=='no':
+                if decision_note==None or decision_note=='':
+                    decision_note='no reason'
                 z.current_stage+='c'
                 z.hall_incharge_reason = decision_note
                 z.save()
@@ -431,11 +439,15 @@ def decision(request):
             ob = Request.objects.filter(request_id=request_id)
             z = ob[0]
             if decision=='yes':
+                if decision_note==None or decision_note=='':
+                    decision_note='no notes'
                 z.generator_stage += '2'
                 z.generator_incharge_notes=decision_note
                 z.save()
                 return JsonResponse({'text': 'successfully accepted'})
             elif decision=='no':
+                if decision_note==None or decision_note=='':
+                    decision_note='no reason'
                 z.generator_stage += 'c'
                 z.generator_incharge_reason = decision_note
                 z.save()
@@ -445,11 +457,15 @@ def decision(request):
             ob = Booked.objects.filter(request_id=request_id)
             z = ob[0]
             if decision == 'yes':
+                if decision_note==None or decision_note=='':
+                    decision_note='no notes'
                 z.generator_stage += '2'
                 z.generator_incharge_notes = decision_note
                 z.save()
                 return JsonResponse({'text': 'successfully accepted'})
             elif decision == 'no':
+                if decision_note==None or decision_note=='':
+                    decision_note='no reason'
                 z.generator_stage += 'c'
                 z.generator_incharge_reason = decision_note
                 z.save()

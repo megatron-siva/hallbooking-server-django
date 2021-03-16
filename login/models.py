@@ -58,7 +58,7 @@ class Request(models.Model):
     function_nature=models.TextField()
     additional_requirements=models.TextField()
     hall_incharge_id = models.EmailField()
-    generator_incharge_id = models.EmailField(null=True)
+    generator_incharge_id = models.EmailField(blank=True)
     hall_name = models.CharField(max_length=50)
     chief_guest_name=models.CharField(max_length=50,default='unknown')
     chief_guest_detail = models.TextField(default='unknown')
@@ -79,8 +79,8 @@ class Request(models.Model):
         return str(self.request_id)+' - '+self.userid+' - '+self.hall_id
 
 class Booked(models.Model):
-    booking_id=models.AutoField(primary_key=True,default=None)
-    request_id=models.PositiveIntegerField()
+    booking_id=models.AutoField(primary_key=True)
+    request_id=models.IntegerField()
     userid= models.EmailField()
     user_name=models.CharField(max_length=50)
     user_designation=models.CharField(max_length=50)
@@ -95,7 +95,7 @@ class Booked(models.Model):
     function_nature=models.TextField()
     additional_requirements=models.TextField()
     hall_incharge_id = models.EmailField()
-    generator_incharge_id=models.EmailField(null=True)
+    generator_incharge_id=models.EmailField(blank=True,null=True)
     hall_name = models.CharField(max_length=50)
     chief_guest_name = models.CharField(max_length=50,default='unknown')
     chief_guest_detail = models.TextField(default='unknown')
